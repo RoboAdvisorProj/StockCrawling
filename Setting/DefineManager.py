@@ -3,3 +3,5 @@ LOG_LEVEL_INFO = 2
 LOG_LEVEL_DEBUG = 3
 LOG_LEVEL_WARN = 4
 LOG_LEVEL_ERROR = 5
+
+TEST_CRAWL_URL = "http://finance.naver.com/item/main.nhn?code=128940"
