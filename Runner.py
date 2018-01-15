@@ -6,4 +6,5 @@ crawlBasicInfo = CrawlBasicInfo.CrawlBasicInfo(webCrawler, DefineManager.TEST_CR
 crawlBasicInfo.CrawlCompanyName()
 crawlBasicInfo.CrawlCompanyStockCode()
 crawlBasicInfo.CrawlStockPrice()
+crawlBasicInfo.CrawlHighestStockPrice()
 webCrawler.CloseDriver()
