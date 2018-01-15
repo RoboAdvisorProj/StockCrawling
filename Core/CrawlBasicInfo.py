@@ -64,8 +64,30 @@ class CrawlBasicInfo(object):
                 highPriceStr = highPriceStr + indexOfSpanNumber.text
 
             LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlHighestStockPrice", "crawl highest stock price successfully: " + highPriceStr, DefineManager.LOG_LEVEL_INFO)
+
+            return highPriceStr
         except:
             LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlStockHighestPrice", "crawl highest stock price failed", DefineManager.LOG_LEVEL_ERROR)
+        return None
+
+    def CrawlLowestStockPrice(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+            highLowPriceTable = webDriver.find_element_by_class_name(DefineManager.STOCK_HIGH_LOW_PRICE_INFO_TABLE)
+            lowPriceTableRow = highLowPriceTable.find_elements_by_tag_name(DefineManager.TAG_TR)[DefineManager.LOWEST_PRICE_SAVED_ROW_POINT]
+            lowPriceTableCol = lowPriceTableRow.find_elements_by_tag_name(DefineManager.TAG_TD)[DefineManager.LOWEST_PRICE_SAVED_COL_POINT]
+            lowPrice = lowPriceTableCol.find_element_by_class_name(DefineManager.STOCK_LOW_NUMBER_CLASS_NAME)
+            lowPriceNumberElements = lowPrice.find_elements_by_tag_name(DefineManager.TAG_SPAN)
+
+            lowPriceStr = ""
+            for indexOfSpanNumber in lowPriceNumberElements:
+                lowPriceStr = lowPriceStr + indexOfSpanNumber.text
+
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlLowestStockPrice", "crawl lowest stock price successfully: " + lowPriceStr, DefineManager.LOG_LEVEL_INFO)
+
+            return lowPriceStr
+        except:
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlLowestStockPrice", "crawl lowest stock price failed", DefineManager.LOG_LEVEL_ERROR)
         return None
 
     def __del__(self):
