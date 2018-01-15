@@ -7,3 +7,7 @@ LOG_LEVEL_ERROR = 5
 TEST_CRAWL_URL = "http://finance.naver.com/item/main.nhn?code=128940"
 
 COMPANY_INFO_ELEMENTS_CLASS_NAME = "wrap_company"
+STOCK_PRICE_ELEMENTS_CLASS_NAME = "rate_info"
+STOCK_NUMBER_CLASS_NAME = "no_down"
+
+TAG_SPAN = "span"

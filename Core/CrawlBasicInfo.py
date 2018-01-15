@@ -32,5 +32,21 @@ class CrawlBasicInfo(object):
             LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlCompanyStockCode", "crawl company code failed", DefineManager.LOG_LEVEL_ERROR)
         return None
 
+    def CrawlStockPrice(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+            stockElements = webDriver.find_element_by_class_name(DefineManager.STOCK_PRICE_ELEMENTS_CLASS_NAME)
+            stockPrice = stockElements.find_element_by_class_name(DefineManager.STOCK_NUMBER_CLASS_NAME)
+            stockPriceNumberElements = stockPrice.find_elements_by_tag_name(DefineManager.TAG_SPAN)
+
+            stockPriceStr = ""
+            for indexOfSpanNumber in stockPriceNumberElements:
+                stockPriceStr = stockPriceStr + indexOfSpanNumber.text
+
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlStockPrice", "crawl stock price successfully: " + stockPriceStr, DefineManager.LOG_LEVEL_INFO)
+        except:
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlStockPrice", "crawl stock price failed", DefineManager.LOG_LEVEL_ERROR)
+        return None
+
     def __del__(self):
         return
