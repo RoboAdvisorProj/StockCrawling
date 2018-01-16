@@ -1,33 +1,7 @@
-from Core import WebCrawler, CrawlBasicInfo, CrawlDetailInfo
+from Core import CrawlRoutineManager
 from Setting import DefineManager
 
-webCrawler = WebCrawler.WebCrawler()
-
-crawlBasicInfo = CrawlBasicInfo.CrawlBasicInfo(webCrawler, DefineManager.TEST_CRAWL_URL)
-crawlBasicInfo.CrawlCompanyName()
-crawlBasicInfo.CrawlCompanyStockCode()
-crawlBasicInfo.CrawlStockPrice()
-crawlBasicInfo.CrawlHighestStockPrice()
-crawlBasicInfo.CrawlLowestStockPrice()
-crawlBasicInfo.CrawlBestYearPrice()
-crawlBasicInfo.CrawlWorstYearPrice()
-crawlBasicInfo.CrawlDividendYield()
-crawlBasicInfo.CrawlPriceChangedPercent()
-crawlBasicInfo.CrawlMarketCapitalization()
-crawlBasicInfo.CrawlYearBeta()
-crawlBasicInfo.CrawlPER()
-crawlBasicInfo.CrawlPBR()
-crawlBasicInfo.CrawlEPS()
-
-crawlDetailInfo = CrawlDetailInfo.CrawlDetailInfo(webCrawler, DefineManager.TEST_CRAWL_DETAIL_URL)
-crawlDetailInfo.Crawl3YearsBeforeSale()
-crawlDetailInfo.Crawl2YearsBeforeSale()
-crawlDetailInfo.Crawl1YearsBeforeSale()
-crawlDetailInfo.Crawl3YearsBeforeNetIncome()
-crawlDetailInfo.Crawl2YearsBeforeNetIncome()
-crawlDetailInfo.Crawl1YearsBeforeNetIncome()
-crawlDetailInfo.CrawlActQ3()
-crawlDetailInfo.CrawlDptQ3()
-crawlDetailInfo.CrawlCapQ3()
-
-webCrawler.CloseDriver()
+crawlRoutineManager = CrawlRoutineManager.CrawlRoutineManager(DefineManager.TEST_CRAWL_URL, DefineManager.TEST_CRAWL_DETAIL_URL)
+crawlRoutineManager.OpenWebDriver()
+crawlRoutineManager.StartCrawl()
+crawlRoutineManager.CloseWebDriver()
