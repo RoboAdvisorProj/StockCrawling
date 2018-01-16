@@ -23,5 +23,8 @@ crawlDetailInfo = CrawlDetailInfo.CrawlDetailInfo(webCrawler, DefineManager.TEST
 crawlDetailInfo.Crawl3YearsBeforeSale()
 crawlDetailInfo.Crawl2YearsBeforeSale()
 crawlDetailInfo.Crawl1YearsBeforeSale()
+crawlDetailInfo.Crawl3YearsBeforeNetIncome()
+crawlDetailInfo.Crawl2YearsBeforeNetIncome()
+crawlDetailInfo.Crawl1YearsBeforeNetIncome()
 
 webCrawler.CloseDriver()

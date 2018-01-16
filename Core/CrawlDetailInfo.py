@@ -76,5 +76,71 @@ class CrawlDetailInfo(object):
 
         return None
 
+    def Crawl3YearsBeforeNetIncome(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+
+            subHtmlIframe = webDriver.find_element_by_id("coinfo_cp")
+            webDriver = self.webCrawler.SwitchToFrame(subHtmlIframe)
+
+            financialTable = webDriver.find_element_by_id(DefineManager.FINANCIAL_TABLE_ID_NAME)
+            financialRows = financialTable.find_elements_by_tag_name(DefineManager.TAG_TR)
+            financialNetIncomeRow = financialRows[DefineManager.FINANCIAL_NET_INCOME_ROW_POINT]
+            financialNetIncomeStr = financialNetIncomeRow.find_elements_by_tag_name(DefineManager.TAG_TD)[DefineManager.FINANCIAL_NET_INCOME_3_YEARS_BEFORE_COL_POINT].text
+
+            LogManager.PrintLogMessage("CrawlDetailInfo", "Crawl3YearsBeforeNetIncome", "crawl 3 years before net income successfully: " + financialNetIncomeStr, DefineManager.LOG_LEVEL_INFO)
+
+            webDriver = self.webCrawler.SwitchToDefault()
+
+            return financialNetIncomeStr
+        except:
+            LogManager.PrintLogMessage("CrawlDetailInfo", "Crawl3YearsBeforeNetIncome", "crawl 3 years before net income failed", DefineManager.LOG_LEVEL_ERROR)
+
+        return None
+
+    def Crawl2YearsBeforeNetIncome(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+
+            subHtmlIframe = webDriver.find_element_by_id("coinfo_cp")
+            webDriver = self.webCrawler.SwitchToFrame(subHtmlIframe)
+
+            financialTable = webDriver.find_element_by_id(DefineManager.FINANCIAL_TABLE_ID_NAME)
+            financialRows = financialTable.find_elements_by_tag_name(DefineManager.TAG_TR)
+            financialNetIncomeRow = financialRows[DefineManager.FINANCIAL_NET_INCOME_ROW_POINT]
+            financialNetIncomeStr = financialNetIncomeRow.find_elements_by_tag_name(DefineManager.TAG_TD)[DefineManager.FINANCIAL_NET_INCOME_2_YEARS_BEFORE_COL_POINT].text
+
+            LogManager.PrintLogMessage("CrawlDetailInfo", "Crawl2YearsBeforeNetIncome", "crawl 2 years before net income successfully: " + financialNetIncomeStr, DefineManager.LOG_LEVEL_INFO)
+
+            webDriver = self.webCrawler.SwitchToDefault()
+
+            return financialNetIncomeStr
+        except:
+            LogManager.PrintLogMessage("CrawlDetailInfo", "Crawl2YearsBeforeNetIncome", "crawl 2 years before net income failed", DefineManager.LOG_LEVEL_ERROR)
+
+        return None
+
+    def Crawl1YearsBeforeNetIncome(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+
+            subHtmlIframe = webDriver.find_element_by_id("coinfo_cp")
+            webDriver = self.webCrawler.SwitchToFrame(subHtmlIframe)
+
+            financialTable = webDriver.find_element_by_id(DefineManager.FINANCIAL_TABLE_ID_NAME)
+            financialRows = financialTable.find_elements_by_tag_name(DefineManager.TAG_TR)
+            financialNetIncomeRow = financialRows[DefineManager.FINANCIAL_NET_INCOME_ROW_POINT]
+            financialNetIncomeStr = financialNetIncomeRow.find_elements_by_tag_name(DefineManager.TAG_TD)[DefineManager.FINANCIAL_NET_INCOME_1_YEARS_BEFORE_COL_POINT].text
+
+            LogManager.PrintLogMessage("CrawlDetailInfo", "Crawl1YearsBeforeNetIncome", "crawl 1 years before net income successfully: " + financialNetIncomeStr, DefineManager.LOG_LEVEL_INFO)
+
+            webDriver = self.webCrawler.SwitchToDefault()
+
+            return financialNetIncomeStr
+        except:
+            LogManager.PrintLogMessage("CrawlDetailInfo", "Crawl1YearsBeforeNetIncome", "crawl 1 years before net income failed", DefineManager.LOG_LEVEL_ERROR)
+
+        return None
+
     def __del__(self):
         return
