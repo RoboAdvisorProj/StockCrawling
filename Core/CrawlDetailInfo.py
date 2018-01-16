@@ -142,5 +142,25 @@ class CrawlDetailInfo(object):
 
         return None
 
+    def CrawlActQ3(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+
+            subHtmlIframe = webDriver.find_element_by_id("coinfo_cp")
+            webDriver = self.webCrawler.SwitchToFrame(subHtmlIframe)
+
+            financialTable = webDriver.find_element_by_id(DefineManager.FINANCIAL_TABLE_ID_NAME)
+            financialRows = financialTable.find_elements_by_tag_name(DefineManager.TAG_TR)
+            financialActRow = financialRows[DefineManager.FINANCIAL_ACT_ROW_POINT]
+            financialActStr = financialActRow.find_elements_by_tag_name(DefineManager.TAG_TD)[DefineManager.FINANCIAL_Q3_COL_POINT].text
+
+            LogManager.PrintLogMessage("CrawlDetailInfo", "CrawlActQ3", "crawl ACT Q3 successfully: " + financialActStr, DefineManager.LOG_LEVEL_INFO)
+
+            webDriver = self.webCrawler.SwitchToDefault()
+
+            return financialActStr
+        except:
+            LogManager.PrintLogMessage("CrawlDetailInfo", "CrawlActQ3", "crawl ACT Q3 failed", DefineManager.LOG_LEVEL_ERROR)
+
     def __del__(self):
         return
