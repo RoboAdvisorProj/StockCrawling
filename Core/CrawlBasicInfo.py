@@ -164,5 +164,19 @@ class CrawlBasicInfo(object):
 
         return None
 
+    def CrawlMarketCapitalization(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+            marketCapitalizationTable = webDriver.find_element_by_class_name(DefineManager.MARKET_CAPITALIZATION_CLASS_NAME)
+            marketCapitalizationStr = marketCapitalizationTable.find_element_by_tag_name(DefineManager.TAG_TD).text
+
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlMarketCapitalization", "crawl market capitalization successfully: " + marketCapitalizationStr, DefineManager.LOG_LEVEL_INFO)
+
+            return marketCapitalizationStr
+        except:
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlMarketCapitalization", "crawl market capitalization failed", DefineManager.LOG_LEVEL_ERROR)
+
+        return None
+
     def __del__(self):
         return

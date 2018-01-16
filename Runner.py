@@ -13,5 +13,6 @@ crawlBasicInfo.CrawlBestYearPrice()
 crawlBasicInfo.CrawlWorstYearPrice()
 crawlBasicInfo.CrawlDividendYield()
 crawlBasicInfo.CrawlPriceChangedPercent()
+crawlBasicInfo.CrawlMarketCapitalization()
 
 webCrawler.CloseDriver()
