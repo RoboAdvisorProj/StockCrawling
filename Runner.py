@@ -1,4 +1,4 @@
-from Core import WebCrawler, CrawlBasicInfo
+from Core import WebCrawler, CrawlBasicInfo, CrawlDetailInfo
 from Setting import DefineManager
 
 webCrawler = WebCrawler.WebCrawler()
@@ -18,5 +18,8 @@ crawlBasicInfo.CrawlYearBeta()
 crawlBasicInfo.CrawlPER()
 crawlBasicInfo.CrawlPBR()
 crawlBasicInfo.CrawlEPS()
+
+crawlDetailInfo = CrawlDetailInfo.CrawlDetailInfo(webCrawler, DefineManager.TEST_CRAWL_DETAIL_URL)
+crawlDetailInfo.Crawl3YearsBeforeSale()
 
 webCrawler.CloseDriver()
