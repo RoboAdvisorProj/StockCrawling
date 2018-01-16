@@ -146,5 +146,23 @@ class CrawlBasicInfo(object):
 
         return None
 
+    def CrawlPriceChangedPercent(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+            stockElements = webDriver.find_element_by_class_name(DefineManager.STOCK_PRICE_ELEMENTS_CLASS_NAME)
+            priceChangedPercent = stockElements.find_elements_by_tag_name(DefineManager.TAG_EM)[DefineManager.CHANGED_PRICE_PERCENT_SAVED_POINT]
+            priceChangedPercentNumberElements = priceChangedPercent.find_elements_by_tag_name(DefineManager.TAG_SPAN)
+
+            priceChangedPercentStr = ""
+            for indexOfElement in priceChangedPercentNumberElements:
+                priceChangedPercentStr = priceChangedPercentStr + indexOfElement.text
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlPriceChangedPercent", "crawl price changed percent successfully: " + priceChangedPercentStr, DefineManager.LOG_LEVEL_INFO)
+
+            return priceChangedPercentStr
+        except:
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlPriceChangedPercent", "crawl price changed percent failed", DefineManager.LOG_LEVEL_ERROR)
+
+        return None
+
     def __del__(self):
         return
