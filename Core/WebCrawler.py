@@ -50,6 +50,23 @@ class WebCrawler(object):
             LogManager.PrintLogMessage("WebCrawler", "CloseDriver", "cannot close chrome browser", DefineManager.LOG_LEVEL_ERROR)
             self.driverStatus = True
 
+    def ClickElement(self, clickTarget, returnTarget):
+        LogManager.PrintLogMessage("WebCrawler", "ClickElement", "try to click target", DefineManager.LOG_LEVEL_INFO)
+        try:
+            clickTarget.click()
+            self.returnTarget = returnTarget
+            LogManager.PrintLogMessage("WebCrawler", "ClickElement", "target clicked and setting up return target element", DefineManager.LOG_LEVEL_INFO)
+        except:
+            LogManager.PrintLogMessage("WebCrawler", "ClickElement", "cannot click target", DefineManager.LOG_LEVEL_ERROR)
+
+    def ReturnClickElement(self):
+        LogManager.PrintLogMessage("WebCrawler", "ReturnClickElement", "try return to before click target", DefineManager.LOG_LEVEL_INFO)
+        try:
+            self.returnTarget.click()
+            LogManager.PrintLogMessage("WebCrawler", "ReturnClickElement", "return target clicked", DefineManager.LOG_LEVEL_INFO)
+        except:
+            LogManager.PrintLogMessage("WebCrawler", "ReturnClickElement", "cannot click return target", DefineManager.LOG_LEVEL_ERROR)
+
     def GetDriver(self):
         return self.driver
 
