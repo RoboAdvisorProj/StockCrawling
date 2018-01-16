@@ -233,5 +233,33 @@ class CrawlBasicInfo(object):
 
         return None
 
+    def CrawlPBR(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+            tabSubMenu = webDriver.find_element_by_class_name(DefineManager.STOCK_TAB_SUB_MENUS_CLASS_NAME)
+            menuItems = tabSubMenu.find_elements_by_tag_name(DefineManager.TAG_A)
+            self.webCrawler.ClickElement(menuItems[DefineManager.ITEM_ANALYSIS_POINT])
+
+            subHtmlIframe = webDriver.find_element_by_id("coinfo_cp")
+            webDriver = self.webCrawler.SwitchToFrame(subHtmlIframe)
+
+            fundamentalTable = webDriver.find_element_by_class_name(DefineManager.FUNDAMENTAL_TABLE_CLASS_NAME)
+            fundamentalRows = fundamentalTable.find_elements_by_tag_name(DefineManager.TAG_TR)
+            fundamentalPbrRow = fundamentalRows[DefineManager.FUNDAMENTAL_PBR_ROW_POINT]
+            fundamentalPbrStr = fundamentalPbrRow.find_elements_by_tag_name(DefineManager.TAG_TD)[DefineManager.TABLE_RIGHT_SIDE].text
+
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlPBR", "crawl PBR successfully: " + fundamentalPbrStr, DefineManager.LOG_LEVEL_INFO)
+
+            webDriver = self.webCrawler.SwitchToDefault()
+            tabSubMenu = webDriver.find_element_by_class_name(DefineManager.STOCK_TAB_SUB_MENUS_CLASS_NAME)
+            menuItems = tabSubMenu.find_elements_by_tag_name(DefineManager.TAG_A)
+            self.webCrawler.ClickElement(menuItems[DefineManager.TOTAL_INFO_POINT])
+
+            return fundamentalPbrStr
+        except:
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlPBR", "crawl PBR failed", DefineManager.LOG_LEVEL_ERROR)
+
+        return None
+
     def __del__(self):
         return
