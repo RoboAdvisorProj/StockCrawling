@@ -199,8 +199,11 @@ class CrawlBasicInfo(object):
             menuItems = tabSubMenu.find_elements_by_tag_name(DefineManager.TAG_A)
             self.webCrawler.ClickElement(menuItems[DefineManager.TOTAL_INFO_POINT])
 
+            return yearBetaStr
         except:
             LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlYearBeta", "crawl year beta failed", DefineManager.LOG_LEVEL_ERROR)
+
+        return None
 
     def __del__(self):
         return
