@@ -129,5 +129,22 @@ class CrawlBasicInfo(object):
                                        DefineManager.LOG_LEVEL_ERROR)
         return None
 
+    def CrawlDividendYield(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+            sideTab = webDriver.find_element_by_class_name(DefineManager.STOCK_SIDE_TAB_CLASS_NAME)
+            perEpsTable = sideTab.find_element_by_class_name(
+                DefineManager.STOCK_PER_EPS_CLASS_NAME)
+            dividendYieldRow = perEpsTable.find_elements_by_tag_name(DefineManager.TAG_TR)[DefineManager.DIVIDEND_YIELD_ROW_POINT]
+            dividendYieldPersent = dividendYieldRow.find_element_by_id(DefineManager.STOCK_DIVIDEND_YIELD_ID_NAME).text
+
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlDividendYield", "crawl dividend yield successfully: " + dividendYieldPersent, DefineManager.LOG_LEVEL_INFO)
+
+            return dividendYieldPersent
+        except:
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlDividendYield", "crawl dividend yield failed", DefineManager.LOG_LEVEL_ERROR)
+
+        return None
+
     def __del__(self):
         return
