@@ -162,5 +162,57 @@ class CrawlDetailInfo(object):
         except:
             LogManager.PrintLogMessage("CrawlDetailInfo", "CrawlActQ3", "crawl ACT Q3 failed", DefineManager.LOG_LEVEL_ERROR)
 
+        return None
+
+    def CrawlDptQ3(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+
+            subHtmlIframe = webDriver.find_element_by_id("coinfo_cp")
+            webDriver = self.webCrawler.SwitchToFrame(subHtmlIframe)
+
+            financialTable = webDriver.find_element_by_id(DefineManager.FINANCIAL_TABLE_ID_NAME)
+            financialRows = financialTable.find_elements_by_tag_name(DefineManager.TAG_TR)
+            financialDptRow = financialRows[DefineManager.FINANCIAL_DPT_ROW_POINT]
+            financialDptStr = financialDptRow.find_elements_by_tag_name(DefineManager.TAG_TD)[
+                DefineManager.FINANCIAL_Q3_COL_POINT].text
+
+            LogManager.PrintLogMessage("CrawlDetailInfo", "CrawlDptQ3", "crawl DPT Q3 successfully: " + financialDptStr,
+                                       DefineManager.LOG_LEVEL_INFO)
+
+            webDriver = self.webCrawler.SwitchToDefault()
+
+            return financialDptStr
+        except:
+            LogManager.PrintLogMessage("CrawlDetailInfo", "CrawlDptQ3", "crawl DPT Q3 failed",
+                                       DefineManager.LOG_LEVEL_ERROR)
+
+        return None
+
+    def CrawlCapQ3(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+
+            subHtmlIframe = webDriver.find_element_by_id("coinfo_cp")
+            webDriver = self.webCrawler.SwitchToFrame(subHtmlIframe)
+
+            financialTable = webDriver.find_element_by_id(DefineManager.FINANCIAL_TABLE_ID_NAME)
+            financialRows = financialTable.find_elements_by_tag_name(DefineManager.TAG_TR)
+            financialCapRow = financialRows[DefineManager.FINANCIAL_CAP_ROW_POINT]
+            financialCapStr = financialCapRow.find_elements_by_tag_name(DefineManager.TAG_TD)[
+                DefineManager.FINANCIAL_Q3_COL_POINT].text
+
+            LogManager.PrintLogMessage("CrawlDetailInfo", "CrawlCapQ3", "crawl CAP Q3 successfully: " + financialCapStr,
+                                       DefineManager.LOG_LEVEL_INFO)
+
+            webDriver = self.webCrawler.SwitchToDefault()
+
+            return financialCapStr
+        except:
+            LogManager.PrintLogMessage("CrawlDetailInfo", "CrawlCapQ3", "crawl CAP Q3 failed",
+                                       DefineManager.LOG_LEVEL_ERROR)
+
+        return None
+
     def __del__(self):
         return

@@ -27,5 +27,7 @@ crawlDetailInfo.Crawl3YearsBeforeNetIncome()
 crawlDetailInfo.Crawl2YearsBeforeNetIncome()
 crawlDetailInfo.Crawl1YearsBeforeNetIncome()
 crawlDetailInfo.CrawlActQ3()
+crawlDetailInfo.CrawlDptQ3()
+crawlDetailInfo.CrawlCapQ3()
 
 webCrawler.CloseDriver()
