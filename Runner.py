@@ -17,5 +17,6 @@ crawlBasicInfo.CrawlMarketCapitalization()
 crawlBasicInfo.CrawlYearBeta()
 crawlBasicInfo.CrawlPER()
 crawlBasicInfo.CrawlPBR()
+crawlBasicInfo.CrawlEPS()
 
 webCrawler.CloseDriver()
