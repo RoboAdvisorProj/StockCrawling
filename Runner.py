@@ -10,5 +10,6 @@ crawlBasicInfo.CrawlStockPrice()
 crawlBasicInfo.CrawlHighestStockPrice()
 crawlBasicInfo.CrawlLowestStockPrice()
 crawlBasicInfo.CrawlBestYearPrice()
+crawlBasicInfo.CrawlWorstYearPrice()
 
 webCrawler.CloseDriver()
