@@ -90,5 +90,22 @@ class CrawlBasicInfo(object):
             LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlLowestStockPrice", "crawl lowest stock price failed", DefineManager.LOG_LEVEL_ERROR)
         return None
 
+    def CrawlBestYearPrice(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+            sideTab = webDriver.find_element_by_class_name(DefineManager.STOCK_SIDE_TAB_CLASS_NAME)
+            investmentOpinionSection = sideTab.find_element_by_class_name(DefineManager.STOCK_INVESTMENT_OPINION_CLASS_NAME)
+            investmentOpinionRow = investmentOpinionSection.find_elements_by_tag_name(DefineManager.TAG_TR)[DefineManager.BEST_PRICE_OF_THE_YEAR_ROW_POINT]
+            investmentOpinionCols = investmentOpinionRow.find_elements_by_tag_name(DefineManager.TAG_EM)
+
+            bestPriceOfTheYear = investmentOpinionCols[DefineManager.BEST_PRICE_OF_THE_YEAR_COL_POINT].text
+
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlBestYearPrice", "crawl best price of the year successfully: " + bestPriceOfTheYear, DefineManager.LOG_LEVEL_INFO)
+
+            return bestPriceOfTheYear
+        except:
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlBestYearPrice", "crawl best price of the year failed", DefineManager.LOG_LEVEL_ERROR)
+        return None
+
     def __del__(self):
         return
