@@ -178,5 +178,29 @@ class CrawlBasicInfo(object):
 
         return None
 
+    def CrawlYearBeta(self):
+        try:
+            webDriver = self.webCrawler.GetDriver()
+            tabSubMenu = webDriver.find_element_by_class_name(DefineManager.STOCK_TAB_SUB_MENUS_CLASS_NAME)
+            menuItems = tabSubMenu.find_elements_by_tag_name(DefineManager.TAG_A)
+            self.webCrawler.ClickElement(menuItems[DefineManager.ITEM_ANALYSIS_POINT])
+
+            subHtmlIframe = webDriver.find_element_by_id("coinfo_cp")
+            webDriver = self.webCrawler.SwitchToFrame(subHtmlIframe)
+
+            priceQuoteTable = webDriver.find_element_by_id(DefineManager.STOCK_QUOTE_TABLE_ID_NAME)
+            yearBetaRow = priceQuoteTable.find_elements_by_tag_name(DefineManager.TAG_TR)[DefineManager.YEAR_BETA_ROW_POINT]
+            yearBetaStr = yearBetaRow.find_element_by_tag_name(DefineManager.TAG_TD).text
+
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlYearBeta", "crawl year beta successfully: " + yearBetaStr, DefineManager.LOG_LEVEL_INFO)
+
+            webDriver = self.webCrawler.SwitchToDefault()
+            tabSubMenu = webDriver.find_element_by_class_name(DefineManager.STOCK_TAB_SUB_MENUS_CLASS_NAME)
+            menuItems = tabSubMenu.find_elements_by_tag_name(DefineManager.TAG_A)
+            self.webCrawler.ClickElement(menuItems[DefineManager.TOTAL_INFO_POINT])
+
+        except:
+            LogManager.PrintLogMessage("CrawlBasicInfo", "CrawlYearBeta", "crawl year beta failed", DefineManager.LOG_LEVEL_ERROR)
+
     def __del__(self):
         return

@@ -24,7 +24,7 @@ class WebCrawler(object):
         LogManager.PrintLogMessage("WebCrawler", "SetDriverUrl", "moving on " + url, DefineManager.LOG_LEVEL_INFO)
         try:
             self.driver.get(url)
-            self.driver.implicitly_wait(3)
+            self.driver.implicitly_wait(DefineManager.DELAY)
             return True
         except:
             LogManager.PrintLogMessage("WebCrawler", "SetDriverUrl", "connection failed " + url, DefineManager.LOG_LEVEL_ERROR)
@@ -54,9 +54,28 @@ class WebCrawler(object):
         LogManager.PrintLogMessage("WebCrawler", "ClickElement", "try to click target", DefineManager.LOG_LEVEL_INFO)
         try:
             clickTarget.click()
+            self.driver.implicitly_wait(DefineManager.DELAY)
             LogManager.PrintLogMessage("WebCrawler", "ClickElement", "target clicked", DefineManager.LOG_LEVEL_INFO)
         except:
             LogManager.PrintLogMessage("WebCrawler", "ClickElement", "cannot click target", DefineManager.LOG_LEVEL_ERROR)
+
+    def SwitchToFrame(self, frameTarget):
+        try:
+            self.driver.switch_to.frame(frameTarget)
+            LogManager.PrintLogMessage("WebCrawler", "SwitchToFrame", "frame switched", DefineManager.LOG_LEVEL_INFO)
+            return self.driver
+        except:
+            LogManager.PrintLogMessage("WebCrawler", "SwitchToFrame", "frame not switched", DefineManager.LOG_LEVEL_ERROR)
+        return None
+
+    def SwitchToDefault(self):
+        try:
+            self.driver.switch_to.default_content()
+            LogManager.PrintLogMessage("WebCrawler", "SwitchToDefault", "frame switched", DefineManager.LOG_LEVEL_INFO)
+            return self.driver
+        except:
+            LogManager.PrintLogMessage("WebCrawler", "SwitchToDefault", "frame not switched", DefineManager.LOG_LEVEL_ERROR)
+        return None
 
     def GetDriver(self):
         return self.driver
