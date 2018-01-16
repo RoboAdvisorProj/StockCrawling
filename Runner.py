@@ -21,5 +21,7 @@ crawlBasicInfo.CrawlEPS()
 
 crawlDetailInfo = CrawlDetailInfo.CrawlDetailInfo(webCrawler, DefineManager.TEST_CRAWL_DETAIL_URL)
 crawlDetailInfo.Crawl3YearsBeforeSale()
+crawlDetailInfo.Crawl2YearsBeforeSale()
+crawlDetailInfo.Crawl1YearsBeforeSale()
 
 webCrawler.CloseDriver()
