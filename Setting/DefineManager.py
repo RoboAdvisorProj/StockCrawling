@@ -4,8 +4,8 @@ LOG_LEVEL_DEBUG = 3
 LOG_LEVEL_WARN = 4
 LOG_LEVEL_ERROR = 5
 
-TEST_CRAWL_URL = "http://finance.naver.com/item/main.nhn?code=128940"
-TEST_CRAWL_DETAIL_URL = "http://finance.naver.com/item/coinfo.nhn?code=128940&target=finsum_more"
+TEST_CRAWL_URL = "http://finance.naver.com/item/main.nhn?code=215600"
+TEST_CRAWL_DETAIL_URL = "http://finance.naver.com/item/coinfo.nhn?code=215600&target=finsum_more"
 
 COMPANY_INFO_ELEMENTS_CLASS_NAME = "wrap_company"
 STOCK_PRICE_ELEMENTS_CLASS_NAME = "rate_info"

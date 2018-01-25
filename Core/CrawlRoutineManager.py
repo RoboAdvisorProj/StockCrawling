@@ -18,31 +18,31 @@ class CrawlRoutineManager(object):
         LogManager.PrintLogMessage("CrawlRoutineManager", "StartCrawl", "crawl data", DefineManager.LOG_LEVEL_INFO)
         crawlDataDic = {}
         crawlBasicInfo = CrawlBasicInfo.CrawlBasicInfo(self.webCrawler, self.targetUrl)
-        crawlDataDic["Name"] = crawlBasicInfo.CrawlCompanyName()
-        crawlDataDic["Code"] = crawlBasicInfo.CrawlCompanyStockCode()
-        crawlDataDic["Price"] = crawlBasicInfo.CrawlStockPrice()
-        crawlDataDic["D_PRH"] = crawlBasicInfo.CrawlHighestStockPrice()
-        crawlDataDic["D_PRL"] = crawlBasicInfo.CrawlLowestStockPrice()
-        crawlDataDic["Y_PRH"] = crawlBasicInfo.CrawlBestYearPrice()
-        crawlDataDic["Y_PRL"] = crawlBasicInfo.CrawlWorstYearPrice()
-        crawlDataDic["D_IV"] = crawlBasicInfo.CrawlDividendYield()
-        crawlDataDic["Change"] = crawlBasicInfo.CrawlPriceChangedPercent()
-        crawlDataDic["Value"] = crawlBasicInfo.CrawlMarketCapitalization()
-        crawlDataDic["Beta"] = crawlBasicInfo.CrawlYearBeta()
-        crawlDataDic["PER"] = crawlBasicInfo.CrawlPER()
-        crawlDataDic["PBR"] = crawlBasicInfo.CrawlPBR()
-        crawlDataDic["EPS"] = crawlBasicInfo.CrawlEPS()
+        crawlDataDic["Name"] = crawlBasicInfo.CrawlCompanyName() or ""
+        crawlDataDic["Code"] = crawlBasicInfo.CrawlCompanyStockCode() or ""
+        crawlDataDic["Price"] = crawlBasicInfo.CrawlStockPrice() or ""
+        crawlDataDic["D_PRH"] = crawlBasicInfo.CrawlHighestStockPrice() or ""
+        crawlDataDic["D_PRL"] = crawlBasicInfo.CrawlLowestStockPrice() or ""
+        crawlDataDic["Y_PRH"] = crawlBasicInfo.CrawlBestYearPrice() or ""
+        crawlDataDic["Y_PRL"] = crawlBasicInfo.CrawlWorstYearPrice() or ""
+        crawlDataDic["D_IV"] = crawlBasicInfo.CrawlDividendYield() or ""
+        crawlDataDic["Change"] = crawlBasicInfo.CrawlPriceChangedPercent() or ""
+        crawlDataDic["Value"] = crawlBasicInfo.CrawlMarketCapitalization() or ""
+        crawlDataDic["Beta"] = crawlBasicInfo.CrawlYearBeta() or ""
+        crawlDataDic["PER"] = crawlBasicInfo.CrawlPER() or ""
+        crawlDataDic["PBR"] = crawlBasicInfo.CrawlPBR() or ""
+        crawlDataDic["EPS"] = crawlBasicInfo.CrawlEPS() or ""
 
         crawlDetailInfo = CrawlDetailInfo.CrawlDetailInfo(self.webCrawler, self.targetDetailUrl)
-        crawlDataDic["SALEQ2"] = crawlDetailInfo.Crawl3YearsBeforeSale()
-        crawlDataDic["SALEQ1"] = crawlDetailInfo.Crawl2YearsBeforeSale()
-        crawlDataDic["SALEQ0"] = crawlDetailInfo.Crawl1YearsBeforeSale()
-        crawlDataDic["NIQ2"] = crawlDetailInfo.Crawl3YearsBeforeNetIncome()
-        crawlDataDic["NIQ1"] = crawlDetailInfo.Crawl2YearsBeforeNetIncome()
-        crawlDataDic["NIQ0"] = crawlDetailInfo.Crawl1YearsBeforeNetIncome()
-        crawlDataDic["ACT"] = crawlDetailInfo.CrawlActQ3()
-        crawlDataDic["DPT"] = crawlDetailInfo.CrawlDptQ3()
-        crawlDataDic["CAP"] = crawlDetailInfo.CrawlCapQ3()
+        crawlDataDic["SALEQ2"] = crawlDetailInfo.Crawl3YearsBeforeSale() or ""
+        crawlDataDic["SALEQ1"] = crawlDetailInfo.Crawl2YearsBeforeSale() or ""
+        crawlDataDic["SALEQ0"] = crawlDetailInfo.Crawl1YearsBeforeSale() or ""
+        crawlDataDic["NIQ2"] = crawlDetailInfo.Crawl3YearsBeforeNetIncome() or ""
+        crawlDataDic["NIQ1"] = crawlDetailInfo.Crawl2YearsBeforeNetIncome() or ""
+        crawlDataDic["NIQ0"] = crawlDetailInfo.Crawl1YearsBeforeNetIncome() or ""
+        crawlDataDic["ACT"] = crawlDetailInfo.CrawlActQ3() or ""
+        crawlDataDic["DPT"] = crawlDetailInfo.CrawlDptQ3() or ""
+        crawlDataDic["CAP"] = crawlDetailInfo.CrawlCapQ3() or ""
 
         for key in crawlDataDic:
             LogManager.PrintLogMessage("CrawlRoutineManager", "StartCrawl", "" + key + ": " + crawlDataDic[key], DefineManager.LOG_LEVEL_DEBUG)
