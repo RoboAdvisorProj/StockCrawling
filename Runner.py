@@ -1,5 +1,5 @@
 from Core import CrawlRoutineManager
-from Setting import DefineManager
+from Utils import ExportDataManager
 
 # SK하이닉스, 한올바이오파마, 아남전자, 삼성중공업, 삼성전, 한국항공우주, 카카오. 일진다이, 지엠비코리아, 삼성엔지니어링
 companyCodeList = [
@@ -11,3 +11,7 @@ crawlRoutineManager.OpenWebDriver()
 crawlRoutineManager.SetCrawlCompanyCode(companyCodeList)
 crawlRoutineManager.RunCrawling()
 crawlRoutineManager.CloseWebDriver()
+
+exportDataManager = ExportDataManager.ExportDataManager()
+exportDataManager.SetDataArray(crawlRoutineManager.GetCrawlDataArray())
+exportDataManager.ExportDataArrayAsCSV()
