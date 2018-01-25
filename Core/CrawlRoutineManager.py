@@ -3,9 +3,10 @@ from Setting import DefineManager
 from Utils import LogManager
 
 class CrawlRoutineManager(object):
-    def __init__(self, targetUrl, targetDetailUrl):
+    def __init__(self, targetUrl = "", targetDetailUrl = ""):
         self.targetUrl = targetUrl
         self.targetDetailUrl = targetDetailUrl
+        self.companyCodes = []
         self.crawlDataArray = []
         LogManager.PrintLogMessage("CrawlRoutineManager", "__init__", "init routine manager", DefineManager.LOG_LEVEL_INFO)
         return
@@ -13,6 +14,19 @@ class CrawlRoutineManager(object):
     def OpenWebDriver(self):
         LogManager.PrintLogMessage("CrawlRoutineManager", "OpenWebDriver", "open web driver", DefineManager.LOG_LEVEL_INFO)
         self.webCrawler = WebCrawler.WebCrawler()
+
+    def SetCrawlCompanyCode(self, companyCodes):
+        LogManager.PrintLogMessage("CrawlRoutineManager", "SetCrawlCompanyCode", "setup companyCodes", DefineManager.LOG_LEVEL_INFO)
+        self.companyCodes = companyCodes
+
+    def RunCrawling(self):
+        LogManager.PrintLogMessage("CrawlRoutineManager", "RunCrawling", "running company stock price crawling", DefineManager.LOG_LEVEL_INFO)
+        for indexOfCompanyCode in self.companyCodes:
+            companyCode = indexOfCompanyCode
+            self.targetUrl = "http://finance.naver.com/item/main.nhn?code=" + companyCode
+            self.targetDetailUrl = "http://finance.naver.com/item/coinfo.nhn?code=" + companyCode + "&target=finsum_more"
+            LogManager.PrintLogMessage("CrawlRoutineManager", "RunCrawling", "start crawling company: " + companyCode, DefineManager.LOG_LEVEL_INFO)
+            self.StartCrawl()
 
     def StartCrawl(self):
         LogManager.PrintLogMessage("CrawlRoutineManager", "StartCrawl", "crawl data", DefineManager.LOG_LEVEL_INFO)
@@ -48,6 +62,7 @@ class CrawlRoutineManager(object):
             LogManager.PrintLogMessage("CrawlRoutineManager", "StartCrawl", "" + key + ": " + crawlDataDic[key], DefineManager.LOG_LEVEL_DEBUG)
 
         self.crawlDataArray.append(crawlDataDic)
+        LogManager.PrintLogMessage("CrawlRoutineManager", "StartCrawl", "saved crawl data size: " + str(self.crawlDataArray.__len__()), DefineManager.LOG_LEVEL_INFO)
 
     def CloseWebDriver(self):
         LogManager.PrintLogMessage("CrawlRoutineManager", "CloseWebDriver", "shut down web driver", DefineManager.LOG_LEVEL_INFO)
